@@ -17,6 +17,8 @@ from typing import List, Dict, Any, Optional
 import asyncio
 import logging
 from datetime import datetime
+import traceback
+import numpy as np
 
 # Import our analysis modules
 from analysis.stego_detector import SteganographyDetector
@@ -174,6 +176,16 @@ async def get_system_statistics():
         "averageProcessingTime": 2.3
     }
 
+def convert_numpy_types(obj):
+    """Recursively convert numpy types to native Python types for JSON serialization."""
+    if isinstance(obj, dict):
+        return {k: convert_numpy_types(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_types(i) for i in obj]
+    elif isinstance(obj, (np.generic, np.bool_, np.integer, np.floating)):
+        return obj.item()
+    return obj
+
 @app.post("/analyze")
 async def analyze_file(
     background_tasks: BackgroundTasks,
@@ -211,13 +223,18 @@ async def analyze_file(
             ai_enabled,
             forensics_enabled
         )
+        # Convert all numpy types to native Python types before returning
+        analysis_result = convert_numpy_types(analysis_result)
         
         # Cleanup
         background_tasks.add_task(cleanup_temp_file, temp_path)
-        
         return analysis_result
-        
     except Exception as e:
+        # Log error to error.log with traceback (absolute path)
+        error_log_path = os.path.join(os.path.dirname(__file__), "error.log")
+        with open(error_log_path, "a") as f:
+            f.write(f"\n[{datetime.now().isoformat()}] Error analyzing file: {str(e)}\n")
+            traceback.print_exc(file=f)
         logger.error(f"Error analyzing file: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
 

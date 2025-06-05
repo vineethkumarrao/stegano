@@ -797,3 +797,22 @@ class EntropyAnalyzer:
             
         except Exception:
             return []
+    
+    def entropy_signature_detection(self, entropy_values):
+        """Detect suspicious entropy signatures (fixes float.bit_length bug)"""
+        import math
+        try:
+            # Example: check for high entropy spikes using log2 instead of bit_length
+            spikes = []
+            for val in entropy_values:
+                # Use math.log2 for float, not bit_length
+                if isinstance(val, float) and val > 0:
+                    log_val = math.log2(val)
+                    if log_val > 2.5:  # Arbitrary threshold for spike
+                        spikes.append(val)
+            return {
+                "spike_count": len(spikes),
+                "spikes": spikes
+            }
+        except Exception as e:
+            return {"error": str(e)}

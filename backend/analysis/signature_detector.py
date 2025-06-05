@@ -7,6 +7,7 @@ YARA rules and custom signature detection for steganographic payloads
 import os
 import asyncio
 import logging
+import math
 from typing import Dict, Any, List, Optional
 from pathlib import Path
 import hashlib
@@ -554,11 +555,10 @@ class SignatureDetector:
         # Calculate entropy
         entropy = 0.0
         data_len = len(data)
-        
-        for count in frequency.values():
+          for count in frequency.values():
             probability = count / data_len
             if probability > 0:
-                entropy -= probability * (probability.bit_length() - 1)
+                entropy -= probability * math.log2(probability)
         
         return entropy
     
