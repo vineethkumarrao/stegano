@@ -1,0 +1,15 @@
+This is a simple test file for steganography payload scanning.
+It contains some sample text that can be used to test the upload and scanning functionality.
+
+The file should be processed by the backend API and return analysis results.
+This helps verify the end-to-end workflow of the redesigned interface.
+
+Testing features:
+- File upload capability
+- Backend processing
+- Results display
+- Error handling
+
+File type: Plain text
+Content: Sample data for testing
+Purpose: Verify system functionality

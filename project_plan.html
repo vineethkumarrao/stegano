@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganography Payload Scanner - Project Plan</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1, h2, h3, h4 {
+            color: var(--secondary);
+        }
+        header h1 {
+            color: white;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .phase {
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+        .timeline {
+            display: flex;
+            margin: 30px 0;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: var(--light);
+            top: 20px;
+        }
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding-top: 40px;
+        }
+        .timeline-item::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 12px;
+            left: calc(50% - 10px);
+            z-index: 2;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--light);
+        }
+        .progress-container {
+            background-color: var(--light);
+            border-radius: 5px;
+            height: 25px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .responsibility {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .you {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--primary);
+        }
+        .me {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid var(--success);
+        }
+        .architecture-diagram {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .warning {
+            background-color: rgba(243, 156, 18, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .milestone {
+            background-color: rgba(52, 152, 219, 0.2);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .tech-item {
+            background-color: var(--light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .cloud-resources {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Steganography Payload Scanner & Extractor</h1>
+        <p>Complete Project Implementation Plan</p>
+    </header>
+
+    <div class="container">
+        <h2>Project Overview</h2>
+        <p>This project aims to build a comprehensive web-based tool for detecting and extracting steganographic content from various media files (images, audio, video). The system leverages industry-standard cybersecurity tools combined with custom algorithms and optionally AI to provide a powerful steganography detection platform.</p>
+
+        <div class="architecture-diagram">
+            <h3>System Architecture</h3>
+            <svg width="700" height="500" viewBox="0 0 700 500">
+                <!-- Client Layer -->
+                <rect x="275" y="10" width="150" height="60" rx="5" fill="#3498db" />
+                <text x="350" y="45" text-anchor="middle" fill="white">User/Client</text>
+
+                <!-- Frontend Layer -->
+                <rect x="275" y="100" width="150" height="60" rx="5" fill="#2980b9" />
+                <text x="350" y="135" text-anchor="middle" fill="white">React Frontend</text>
+
+                <!-- API Layer -->
+                <rect x="275" y="190" width="150" height="60" rx="5" fill="#2c3e50" />
+                <text x="350" y="225" text-anchor="middle" fill="white">Flask/FastAPI Backend</text>
+
+                <!-- Processing Layer -->
+                <rect x="50" y="290" width="150" height="60" rx="5" fill="#27ae60" />
+                <text x="125" y="325" text-anchor="middle" fill="white">Media Processor</text>
+
+                <rect x="275" y="290" width="150" height="60" rx="5" fill="#27ae60" />
+                <text x="350" y="325" text-anchor="middle" fill="white">Steganalysis Engine</text>
+
+                <rect x="500" y="290" width="150" height="60" rx="5" fill="#27ae60" />
+                <text x="575" y="325" text-anchor="middle" fill="white">File Forensics</text>
+
+                <!-- AI Layer -->
+                <rect x="160" y="380" width="150" height="60" rx="5" fill="#8e44ad" />
+                <text x="235" y="415" text-anchor="middle" fill="white">AI Analysis</text>
+
+                <rect x="390" y="380" width="150" height="60" rx="5" fill="#e74c3c" />
+                <text x="465" y="415" text-anchor="middle" fill="white">VirusTotal API</text>
+
+                <!-- Storage Layer -->
+                <rect x="275" y="470" width="150" height="60" rx="5" fill="#f39c12" />
+                <text x="350" y="505" text-anchor="middle" fill="white">DigitalOcean Storage</text>
+
+                <!-- Connection Lines -->
+                <line x1="350" y1="70" x2="350" y2="100" stroke="#333" stroke-width="2" />
+                <line x1="350" y1="160" x2="350" y2="190" stroke="#333" stroke-width="2" />
+                <line x1="350" y1="250" x2="350" y2="290" stroke="#333" stroke-width="2" />
+                <line x1="350" y1="250" x2="125" y2="290" stroke="#333" stroke-width="2" />
+                <line x1="350" y1="250" x2="575" y2="290" stroke="#333" stroke-width="2" />
+                <line x1="125" y1="350" x2="235" y2="380" stroke="#333" stroke-width="2" />
+                <line x1="575" y1="350" x2="465" y2="380" stroke="#333" stroke-width="2" />
+                <line x1="350" y1="350" x2="350" y2="470" stroke="#333" stroke-width="2" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Infrastructure & Deployment</h2>
+        <p><strong>Note:</strong> The project is cloud-agnostic. You can deploy on any preferred platform (AWS, Azure, GCP, on-premises, or others). Infrastructure-as-code (e.g., Terraform) and containerization (Docker) will be used for portability and reproducibility.</p>
+        <ul>
+            <li>Backend and worker nodes can be hosted on any VM or container service.</li>
+            <li>Object storage (for uploads/results) can use S3, Azure Blob, Google Cloud Storage, or local storage.</li>
+            <li>Database can be PostgreSQL, MySQL, or any supported managed/self-hosted solution.</li>
+            <li>CI/CD pipelines will be set up for automated deployment regardless of provider.</li>
+        </ul>
+        <p>Let us know your preferred hosting provider or if you need recommendations.</p>
+    </div>
+
+    <div class="container">
+        <h2>Local Development & Deployment</h2>
+        <p><strong>This project can be run entirely on your local machine.</strong> All components—backend (Flask/FastAPI), frontend (React), database (PostgreSQL or SQLite), and file storage (local disk)—can be set up and run locally without any cloud provider.</p>
+        <ul>
+            <li><strong>Backend:</strong> Run Flask/FastAPI server locally (Python 3.9+)</li>
+            <li><strong>Frontend:</strong> Run React app locally (Node.js 14+)</li>
+            <li><strong>Database:</strong> Use PostgreSQL or SQLite installed on your machine</li>
+            <li><strong>File Storage:</strong> Store uploaded and processed files on your local disk</li>
+            <li><strong>Optional:</strong> Use Docker Compose for easy orchestration of all services</li>
+        </ul>
+        <p><strong>Benefits:</strong> No hosting or storage costs, full control, no free tier limits. <br><strong>Limitations:</strong> Only accessible from your machine unless you configure your network for remote access.</p>
+        <h3>Local Setup Requirements</h3>
+        <ul>
+            <li>Windows, macOS, or Linux</li>
+            <li>Python 3.9+ (with venv)</li>
+            <li>Node.js 14+ and npm</li>
+            <li>PostgreSQL or SQLite</li>
+            <li>Docker & Docker Compose (optional, recommended)</li>
+            <li>Sufficient local disk space for media files</li>
+        </ul>
+        <h3>Quick Start</h3>
+        <ol>
+            <li>Clone the repository</li>
+            <li>Set up Python virtual environment and install backend dependencies</li>
+            <li>Set up Node.js environment and install frontend dependencies</li>
+            <li>Configure database (PostgreSQL/SQLite)</li>
+            <li>Run backend and frontend locally (or use Docker Compose)</li>
+        </ol>
+        <p>For detailed instructions, see the README or project documentation.</p>
+    </div>
+
+    <div class="container">
+        <h2>Project Timeline & Phases</h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>Phase 1</h4>
+                <p>Foundation</p>
+                <p>2 weeks</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Phase 2</h4>
+                <p>Core Detection</p>
+                <p>3 weeks</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Phase 3</h4>
+                <p>Advanced Features</p>
+                <p>2 weeks</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Phase 4</h4>
+                <p>Integration</p>
+                <p>2 weeks</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Phase 5</h4>
+                <p>Testing & Polish</p>
+                <p>1 week</p>
+            </div>
+        </div>
+
+        <div class="phase">
+            <h3>Phase 1: Project Foundation (2 weeks)</h3>
+            <div class="responsibility you">
+                <h4>What You Need to Provide:</h4>
+                <ul>
+                    <li>Hosting platform credentials or deployment preferences</li>
+                    <li>VirusTotal API key (if this integration is desired)</li>
+                    <li>Gemini API key for AI integration</li>
+                    <li>Any specific requirements for the UI/dashboard</li>
+                </ul>
+            </div>
+            <div class="responsibility me">
+                <h4>What I Will Implement:</h4>
+                <ul>
+                    <li>Project repository structure setup</li>
+                    <li>Basic Flask/FastAPI backend with file upload endpoints</li>
+                    <li>Docker containerization for services</li>
+                    <li>Simple React frontend with file upload capability</li>
+                    <li>Infrastructure-as-code setup for your chosen platform (if desired)</li>
+                    <li>Database schema design for storing scan results</li>
+                    <li>CI/CD pipeline for automated deployment</li>
+                </ul>
+            </div>
+            <div class="milestone">
+                <strong>Milestone 1:</strong> Working file upload system with basic infrastructure deployed to your chosen platform
+            </div>
+        </div>
+
+        <div class="phase">
+            <h3>Phase 2: Core Detection Engines (3 weeks)</h3>
+            
+            <div class="responsibility you">
+                <h4>What You Need to Provide:</h4>
+                <ul>
+                    <li>Test files with steganographic content (if available)</li>
+                    <li>Any specific steganography techniques you want prioritized</li>
+                    <li>Feedback on preliminary detection results</li>
+                </ul>
+            </div>
+
+            <div class="responsibility me">
+                <h4>What I Will Implement:</h4>
+                <ul>
+                    <li>Image steganalysis module:
+                        <ul>
+                            <li>LSB detection algorithm</li>
+                            <li>Entropy analysis</li>
+                            <li>Color histogram analysis</li>
+                            <li>stegoveritas & zsteg integration</li>
+                        </ul>
+                    </li>
+                    <li>Audio steganalysis module:
+                        <ul>
+                            <li>LSB detection for audio</li>
+                            <li>FFT analysis</li>
+                            <li>Waveform anomaly detection</li>
+                        </ul>
+                    </li>
+                    <li>Video processing pipeline:
+                        <ul>
+                            <li>Frame extraction with ffmpeg</li>
+                            <li>Audio stream separation</li>
+                            <li>Processing frames through image pipeline</li>
+                        </ul>
+                    </li>
+                    <li>File forensics integration:
+                        <ul>
+                            <li>binwalk for embedded file detection</li>
+                            <li>foremost for file carving</li>
+                            <li>exiftool for metadata extraction</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="milestone">
+                <strong>Milestone 2:</strong> Working detection engines for images, audio, and video with initial results display
+            </div>
+        </div>
+
+        <div class="phase">
+            <h3>Phase 3: Advanced Features (2 weeks)</h3>
+            
+            <div class="responsibility you">
+                <h4>What You Need to Provide:</h4>
+                <ul>
+                    <li>Custom YARA rules (if you have any specific ones)</li>
+                    <li>Preferences for alerting mechanisms</li>
+                </ul>
+            </div>
+
+            <div class="responsibility me">
+                <h4>What I Will Implement:</h4>
+                <ul>
+                    <li>YARA rule integration:
+                        <ul>
+                            <li>Setup basic ruleset for suspicious payloads</li>
+                            <li>Implement scanning mechanism for extracted content</li>
+                        </ul>
+                    </li>
+                    <li>Gemini 2.0 API integration:
+                        <ul>
+                            <li>AI-powered anomaly detection</li>
+                            <li>Content classification for extracted payloads</li>
+                        </ul>
+                    </li>
+                    <li>VirusTotal API integration:
+                        <ul>
+                            <li>Scanning extracted payloads</li>
+                            <li>Result aggregation and display</li>
+                        </ul>
+                    </li>
+                    <li>Optional alerting system:
+                        <ul>
+                            <li>Email notifications</li>
+                            <li>Telegram integration if requested</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="milestone">
+                <strong>Milestone 3:</strong> AI integration, YARA scanning, and VirusTotal checks operational
+            </div>
+        </div>
+
+        <div class="phase">
+            <h3>Phase 4: Frontend & Visualization (2 weeks)</h3>
+            
+            <div class="responsibility you">
+                <h4>What You Need to Provide:</h4>
+                <ul>
+                    <li>Feedback on UI/UX design</li>
+                    <li>Any specific visualization preferences</li>
+                    <li>Dashboard feature priorities</li>
+                </ul>
+            </div>
+
+            <div class="responsibility me">
+                <h4>What I Will Implement:</h4>
+                <ul>
+                    <li>React dashboard with:
+                        <ul>
+                            <li>File upload and processing status</li>
+                            <li>Results display and filtering</li>
+                            <li>User authentication</li>
+                        </ul>
+                    </li>
+                    <li>Visualization components:
+                        <ul>
+                            <li>Entropy heatmaps for images</li>
+                            <li>Waveform graphs for audio</li>
+                            <li>Interactive file structure diagrams</li>
+                            <li>Plotly/PyVis integrations</li>
+                        </ul>
+                    </li>
+                    <li>Result export functionality:
+                        <ul>
+                            <li>PDF reports</li>
+                            <li>CSV/JSON data export</li>
+                            <li>Extracted payload download</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="milestone">
+                <strong>Milestone 4:</strong> Complete interactive dashboard with visualization components
+            </div>
+        </div>
+
+        <div class="phase">
+            <h3>Phase 5: Testing, Documentation & Deployment (1 week)</h3>
+            
+            <div class="responsibility you">
+                <h4>What You Need to Provide:</h4>
+                <ul>
+                    <li>User acceptance testing</li>
+                    <li>Any final adjustments or feature requests</li>
+                </ul>
+            </div>
+
+            <div class="responsibility me">
+                <h4>What I Will Implement:</h4>
+                <ul>
+                    <li>Comprehensive testing:
+                        <ul>
+                            <li>Unit tests for detection algorithms</li>
+                            <li>Integration tests for the full pipeline</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                    </li>
+                    <li>Documentation:
+                        <ul>
+                            <li>User manual</li>
+                            <li>API documentation</li>
+                            <li>Deployment guide</li>
+                        </ul>
+                    </li>
+                    <li>Final deployment:
+                        <ul>
+                            <li>Production environment setup</li>
+                            <li>Monitoring and logging</li>
+                            <li>Backup procedures</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="milestone">
+                <strong>Milestone 5:</strong> Fully tested, documented, and deployed production system
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Technical Stack Overview</h2>
+        
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Flask/FastAPI</div>
+            <div class="tech-item">React.js</div>
+            <div class="tech-item">Docker</div>
+            <div class="tech-item">Terraform</div>
+            <div class="tech-item">stegoveritas</div>
+            <div class="tech-item">zsteg</div>
+            <div class="tech-item">binwalk</div>
+            <div class="tech-item">foremost</div>
+            <div class="tech-item">exiftool</div>
+            <div class="tech-item">YARA</div>
+            <div class="tech-item">ffmpeg</div>
+            <div class="tech-item">OpenCV</div>
+            <div class="tech-item">librosa</div>
+            <div class="tech-item">numpy/scipy</div>
+            <div class="tech-item">Plotly</div>
+            <div class="tech-item">PyVis</div>
+            <div class="tech-item">Gemini 2.0 API</div>
+            <div class="tech-item">VirusTotal API</div>
+            <div class="tech-item">PostgreSQL</div>
+        </div>
+
+        <h3>Development Environment Requirements</h3>
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Requirement</th>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>Python 3.9+ with venv</td>
+            </tr>
+            <tr>
+                <td>Node.js</td>
+                <td>Node 14+ for React development</td>
+            </tr>
+            <tr>
+                <td>Docker</td>
+                <td>Docker and Docker Compose for containerization</td>
+            </tr>
+            <tr>
+                <td>Terraform</td>
+                <td>Terraform 1.0+ for infrastructure (optional)</td>
+            </tr>
+            <tr>
+                <td>Storage</td>
+                <td>Sufficient storage for processing large media files</td>
+            </tr>
+        </table>
+
+        <h3>Hosting Requirements</h3>
+        <ul>
+            <li><strong>Local deployment requires no cloud credentials or paid hosting.</strong></li>
+            <li>Ensure your machine has enough resources for compute, storage, and running all services.</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Challenges & Considerations</h2>
+        
+        <div class="warning">
+            <h3>Technical Challenges</h3>
+            <ul>
+                <li><strong>Processing large files</strong>: Videos and high-resolution images require significant resources. We'll implement chunking and distributed processing.</li>
+                <li><strong>False positives</strong>: Steganalysis often has false positives. We'll tune algorithms and use multiple detection methods.</li>
+                <li><strong>Tool dependencies</strong>: Some tools require specific system packages. We'll handle this through Docker containers.</li>
+                <li><strong>Performance optimization</strong>: We need efficient processing for large files. We'll implement asynchronous processing and background workers.</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <h3>Security Considerations</h3>
+            <ul>
+                <li><strong>Handling potentially malicious files</strong>: Extracted content might be harmful. We'll implement sandboxed processing environments.</li>
+                <li><strong>API key security</strong>: VirusTotal and Gemini API keys need protection. We'll use secret management best practices.</li>
+                <li><strong>User authentication</strong>: Proper authentication and authorization will be implemented for the web interface.</li>
+                <li><strong>Data privacy</strong>: Uploaded files might contain sensitive information. We'll implement proper data handling procedures.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Communication & Project Management</h2>
+        
+        <h3>Progress Tracking</h3>
+        <ul>
+            <li>Weekly progress reports</li>
+            <li>GitHub repository with issues and milestones</li>
+            <li>Regular demo sessions of completed features</li>
+            <li>Collaborative documentation updates</li>
+        </ul>
+
+        <h3>Collaboration Tools</h3>
+        <ul>
+            <li>GitHub for code and version control</li>
+            <li>Discord/Slack for communication (your preference)</li>
+            <li>Shared documentation in Markdown/Wiki</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Getting Started</h2>
+        <p>To kick off the project, we need the following initial steps:</p>
+        <h3>From Your Side:</h3>
+        <ol>
+            <li>Provide hosting platform credentials or deployment preferences</li>
+            <li>Share API keys for VirusTotal and Gemini (if using)</li>
+            <li>Confirm project requirements and priorities</li>
+            <li>Set up communication channels</li>
+        </ol>
+        <h3>First Implementation Steps:</h3>
+        <ol>
+            <li>Create GitHub repository structure</li>
+            <li>Set up development environment</li>
+            <li>Create infrastructure-as-code configuration for your chosen platform (optional)</li>
+            <li>Implement basic backend structure</li>
+            <li>Begin frontend scaffolding</li>
+        </ol>
+    </div>
+
+    <footer>
+        <p>Steganography Payload Scanner & Extractor Project Plan — Updated June 4, 2025</p>
+    </footer>
+</body>
+</html>

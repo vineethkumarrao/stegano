@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #1a1a1a; color: white; }
+        .container { max-width: 800px; margin: 0 auto; }
+        button { padding: 10px 20px; margin: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .result { background: #2a2a2a; padding: 15px; border-radius: 5px; margin-top: 10px; white-space: pre-wrap; }
+        .error { background: #ff4757; }
+        .success { background: #2ed573; }
+        input[type="file"] { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Steganography Scanner API Debug</h1>
+        
+        <h2>Backend Connection Test</h2>
+        <button onclick="testHealth()">Test Backend Health</button>
+        <div id="healthResult" class="result"></div>
+        
+        <h2>File Analysis Test</h2>
+        <input type="file" id="fileInput" accept="image/*,audio/*,.txt,.pdf">
+        <button onclick="testAnalyze()">Test File Analysis</button>
+        <div id="analyzeResult" class="result"></div>
+        
+        <h2>Direct API Test</h2>
+        <button onclick="testDirect()">Test Direct API Call</button>
+        <div id="directResult" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        
+        async function testHealth() {
+            const resultDiv = document.getElementById('healthResult');
+            resultDiv.textContent = 'Testing backend health...';
+            resultDiv.className = 'result';
+            
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                resultDiv.textContent = `✅ Backend Health: ${response.status}\n${JSON.stringify(data, null, 2)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.textContent = `❌ Health Check Failed: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        async function testAnalyze() {
+            const resultDiv = document.getElementById('analyzeResult');
+            const fileInput = document.getElementById('fileInput');
+            
+            if (!fileInput.files.length) {
+                resultDiv.textContent = '❌ Please select a file first';
+                resultDiv.className = 'result error';
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            resultDiv.textContent = `Testing analysis of: ${file.name} (${file.size} bytes)...`;
+            resultDiv.className = 'result';
+            
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('analysis_type', 'basic');
+                formData.append('ai_enabled', 'false');
+                formData.append('forensics_enabled', 'false');
+                
+                console.log('Sending request to:', `${API_BASE}/analyze`);
+                console.log('FormData contents:', {
+                    file: file.name,
+                    analysis_type: 'basic',
+                    ai_enabled: 'false',
+                    forensics_enabled: 'false'
+                });
+                
+                const response = await fetch(`${API_BASE}/analyze`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                console.log('Response status:', response.status);
+                console.log('Response headers:', [...response.headers.entries()]);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.textContent = `✅ Analysis Success: ${response.status}\n${JSON.stringify(data, null, 2)}`;
+                    resultDiv.className = 'result success';
+                } else {
+                    const errorText = await response.text();
+                    resultDiv.textContent = `❌ Analysis Failed: ${response.status}\n${errorText}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                console.error('Analysis error:', error);
+                resultDiv.textContent = `❌ Analysis Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        async function testDirect() {
+            const resultDiv = document.getElementById('directResult');
+            resultDiv.textContent = 'Testing direct API call with text file...';
+            resultDiv.className = 'result';
+            
+            try {
+                // Create a simple text file
+                const textContent = 'This is a test file for steganography analysis.';
+                const blob = new Blob([textContent], { type: 'text/plain' });
+                
+                const formData = new FormData();
+                formData.append('file', blob, 'test.txt');
+                formData.append('analysis_type', 'basic');
+                formData.append('ai_enabled', 'false');
+                formData.append('forensics_enabled', 'false');
+                
+                const response = await fetch(`${API_BASE}/analyze`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.textContent = `✅ Direct API Success: ${response.status}\n${JSON.stringify(data, null, 2)}`;
+                    resultDiv.className = 'result success';
+                } else {
+                    const errorText = await response.text();
+                    resultDiv.textContent = `❌ Direct API Failed: ${response.status}\n${errorText}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.textContent = `❌ Direct API Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        // Auto-test health on page load
+        window.onload = testHealth;
+    </script>
+</body>
+</html>

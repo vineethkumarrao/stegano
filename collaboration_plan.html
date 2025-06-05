@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganography Project - Collaboration Plan</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --ai-color: #9b59b6;
+            --user-color: #e67e22;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--secondary);
+        }
+        
+        header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .responsibility-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .ai-responsibility {
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(155, 89, 182, 0.05) 100%);
+            border-left: 5px solid var(--ai-color);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .user-responsibility {
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.1) 0%, rgba(230, 126, 34, 0.05) 100%);
+            border-left: 5px solid var(--user-color);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .capability-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .capability-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .capability-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .can-do {
+            background-color: var(--success);
+        }
+        
+        .need-help {
+            background-color: var(--warning);
+        }
+        
+        .phase {
+            border-left: 5px solid var(--primary);
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: var(--light);
+            top: 25px;
+        }
+        
+        .timeline-item {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tech-category {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .tech-category h4 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tech-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .alert-info {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .alert-warning {
+            background-color: rgba(243, 156, 18, 0.1);
+            border-left: 4px solid var(--warning);
+        }
+        
+        .alert-success {
+            background-color: rgba(39, 174, 96, 0.1);
+            border-left: 4px solid var(--success);
+        }
+        
+        .file-structure {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        
+        .command-box {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success) 0%, var(--primary) 100%);
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .responsibility-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>    <header>
+        <h1>🔍 Steganography Project Collaboration Plan</h1>
+        <p class="subtitle">Advanced Cybersecurity Tool Development Partnership</p>
+        <p>Updated: June 4, 2025 | Status: <span style="color: #27ae60; font-weight: bold;">✅ ENVIRONMENT READY - PHASE 1 STARTING</span></p>
+    </header>
+
+    <div class="container">
+        <h2>🤝 Collaboration Overview</h2>
+        <p>This document outlines our partnership in building a sophisticated <strong>Steganography Payload Scanner & Extractor</strong>. I'll handle the complete technical implementation while you provide the necessary environment setup and feedback.</p>
+        
+        <div class="alert alert-success">
+            <strong>Great News!</strong> I can build 95% of this project independently. Your main role is providing the environment and testing the results.
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🚀 Project Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>Week 1</h4>
+                <p>Setup & Core Backend</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Week 2</h4>
+                <p>Analysis Engines</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Week 3</h4>
+                <p>Frontend & Integration</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Week 4</h4>
+                <p>Testing & Deployment</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="responsibility-grid">
+        <div class="ai-responsibility">
+            <h3>🤖 What I Will Handle (95%)</h3>
+            
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon can-do">✓</div>
+                    <h4>Complete Backend Development</h4>
+                </div>
+                <ul>
+                    <li>FastAPI application with all endpoints</li>
+                    <li>Database models and SQLAlchemy ORM</li>
+                    <li>Authentication and security systems</li>
+                    <li>File upload and processing pipelines</li>
+                    <li>Error handling and logging</li>
+                    <li>Configuration management</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon can-do">✓</div>
+                    <h4>Advanced Analysis Engines</h4>
+                </div>
+                <ul>
+                    <li>Steganography detection algorithms (LSB, entropy, statistical)</li>
+                    <li>AI/ML anomaly detection with Isolation Forest</li>
+                    <li>Computer vision processing with OpenCV</li>
+                    <li>Audio/video analysis with librosa and FFmpeg</li>
+                    <li>Forensics tool integration (binwalk, exiftool)</li>
+                    <li>Custom pattern recognition algorithms</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon can-do">✓</div>
+                    <h4>Complete Frontend Application</h4>
+                </div>
+                <ul>
+                    <li>Modern React 19 application</li>
+                    <li>Interactive dashboard with real-time updates</li>
+                    <li>File upload with drag-and-drop</li>
+                    <li>Data visualization (charts, heatmaps, graphs)</li>
+                    <li>Responsive design for all devices</li>
+                    <li>Analysis history and result management</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon can-do">✓</div>
+                    <h4>Infrastructure & DevOps</h4>
+                </div>
+                <ul>
+                    <li>Docker containerization and docker-compose</li>
+                    <li>PostgreSQL database setup and migrations</li>
+                    <li>Redis caching configuration</li>
+                    <li>Production deployment scripts</li>
+                    <li>Environment configuration templates</li>
+                    <li>CI/CD pipeline setup (if needed)</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon can-do">✓</div>
+                    <h4>Advanced Features</h4>
+                </div>
+                <ul>
+                    <li>Machine learning models for detection</li>
+                    <li>Entropy analysis and visualization</li>
+                    <li>Metadata extraction and analysis</li>
+                    <li>Signature detection systems</li>
+                    <li>Report generation and export</li>
+                    <li>Performance optimization</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="user-responsibility">
+            <h3>👤 What You Need to Provide (5%)</h3>
+            
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon need-help">!</div>
+                    <h4>Environment Setup</h4>
+                </div>
+                <ul>
+                    <li>Install Python 3.9+ on your Windows system</li>
+                    <li>Install Node.js 18+ for frontend development</li>
+                    <li>Install Docker Desktop for containerization</li>
+                    <li>Install Git for version control</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon need-help">!</div>
+                    <h4>External Tools Installation</h4>
+                </div>
+                <ul>
+                    <li>Install binwalk for file analysis</li>
+                    <li>Install exiftool for metadata extraction</li>
+                    <li>Install zsteg for PNG/BMP analysis (optional)</li>
+                    <li>Install stegoveritas for comprehensive analysis (optional)</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon need-help">!</div>
+                    <h4>API Keys & Configuration</h4>
+                </div>
+                <ul>
+                    <li>Google Gemini API key (for AI analysis)</li>
+                    <li>VirusTotal API key (optional, for malware scanning)</li>
+                    <li>OpenAI API key (optional, alternative to Gemini)</li>
+                    <li>Environment variables configuration</li>
+                </ul>
+            </div>
+
+            <div class="capability-card">
+                <div class="capability-header">
+                    <div class="capability-icon need-help">!</div>
+                    <h4>Testing & Feedback</h4>
+                </div>
+                <ul>
+                    <li>Test the application with sample files</li>
+                    <li>Provide feedback on user interface</li>
+                    <li>Report any bugs or issues found</li>
+                    <li>Suggest feature improvements</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🛠️ Technology Stack I'll Implement</h2>
+        <div class="tech-stack">
+            <div class="tech-category">
+                <h4>Backend Framework</h4>
+                <ul class="tech-list">
+                    <li>FastAPI (Python)</li>
+                    <li>Uvicorn ASGI server</li>
+                    <li>SQLAlchemy ORM</li>
+                    <li>Alembic migrations</li>
+                    <li>Pydantic validation</li>
+                </ul>
+            </div>
+            
+            <div class="tech-category">
+                <h4>Analysis Libraries</h4>
+                <ul class="tech-list">
+                    <li>NumPy & SciPy</li>
+                    <li>OpenCV</li>
+                    <li>Pillow (PIL)</li>
+                    <li>Librosa (audio)</li>
+                    <li>Scikit-learn</li>
+                </ul>
+            </div>
+            
+            <div class="tech-category">
+                <h4>AI & Machine Learning</h4>
+                <ul class="tech-list">
+                    <li>Google Gemini API</li>
+                    <li>TensorFlow</li>
+                    <li>PyTorch</li>
+                    <li>Isolation Forest</li>
+                    <li>Custom ML models</li>
+                </ul>
+            </div>
+            
+            <div class="tech-category">
+                <h4>Frontend Framework</h4>
+                <ul class="tech-list">
+                    <li>React 19</li>
+                    <li>Chart.js & Recharts</li>
+                    <li>Framer Motion</li>
+                    <li>Styled Components</li>
+                    <li>Axios</li>
+                </ul>
+            </div>
+            
+            <div class="tech-category">
+                <h4>Database & Storage</h4>
+                <ul class="tech-list">
+                    <li>PostgreSQL</li>
+                    <li>Redis (caching)</li>
+                    <li>File system storage</li>
+                    <li>JSON data structures</li>
+                </ul>
+            </div>
+            
+            <div class="tech-category">
+                <h4>DevOps & Deployment</h4>
+                <ul class="tech-list">
+                    <li>Docker & docker-compose</li>
+                    <li>Environment configuration</li>
+                    <li>Logging systems</li>
+                    <li>Health monitoring</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>📋 Your Setup Checklist</h2>        <div class="checklist">
+            <h3>Step 1: Install Required Software</h3>
+            <ul>
+                <li style="color: #27ae60;">✅ Download and install Python 3.9+ from python.org (INSTALLED: Python 3.13.3)</li>
+                <li style="color: #27ae60;">✅ Download and install Node.js 18+ from nodejs.org (INSTALLED: Node.js v22.15.0)</li>
+                <li style="color: #27ae60;">✅ Download and install Docker Desktop (INSTALLED: Docker v28.0.4)</li>
+                <li style="color: #27ae60;">✅ Install Git for version control (VERIFIED)</li>
+                <li style="color: #27ae60;">✅ Install a code editor (VS Code recommended)</li>
+            </ul>
+        </div>        <div class="checklist">
+            <h3>Step 2: Install Forensics Tools (Optional but Recommended)</h3>
+            <ul>
+                <li style="color: #f39c12;">⏳ Install binwalk: <code>pip install binwalk</code> (PENDING)</li>
+                <li style="color: #f39c12;">⏳ Install exiftool from exiftool.org (PENDING)</li>
+                <li style="color: #f39c12;">⏳ Install zsteg: <code>gem install zsteg</code> (requires Ruby) (PENDING)</li>
+                <li style="color: #f39c12;">⏳ Install stegoveritas: <code>pip install stegoveritas</code> (PENDING)</li>
+            </ul>
+        </div>        <div class="checklist">
+            <h3>Step 3: Get API Keys</h3>
+            <ul>
+                <li style="color: #f39c12;">⏳ Sign up for Google AI Studio and get Gemini API key (PENDING)</li>
+                <li style="color: #f39c12;">⏳ Register at VirusTotal for API key (optional) (PENDING)</li>
+                <li style="color: #f39c12;">⏳ Set up OpenAI account for GPT access (optional) (PENDING)</li>
+            </ul>
+        </div>        <div class="alert alert-success">
+            <strong>✅ ENVIRONMENT VERIFIED!</strong> All core tools are installed and working:
+            <ul style="margin: 10px 0 0 0;">
+                <li>✅ Python 3.13.3 - Ready for backend development</li>
+                <li>✅ Node.js v22.15.0 - Ready for frontend development</li>
+                <li>✅ Docker v28.0.4 - Ready for containerization</li>
+                <li>✅ Project structure exists - Ready to proceed</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🔄 Development Workflow</h2>
+        <div class="phase">
+            <h3>Phase 1: Initial Setup (2-3 days)</h3>
+            <p><strong>I'll create:</strong></p>
+            <ul>
+                <li>Complete project structure and dependencies</li>
+                <li>Database models and initial migrations</li>
+                <li>Basic FastAPI server with health endpoints</li>
+                <li>Docker configuration for development</li>
+            </ul>
+            <p><strong>You'll do:</strong></p>
+            <ul>
+                <li>Run the setup script I provide</li>
+                <li>Verify all tools are installed correctly</li>
+                <li>Test the basic server startup</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <h3>Phase 2: Core Analysis Engines (1 week)</h3>
+            <p><strong>I'll implement:</strong></p>
+            <ul>
+                <li>Steganography detection algorithms</li>
+                <li>Entropy analysis system</li>
+                <li>Metadata extraction engine</li>
+                <li>Forensics tool integration</li>
+                <li>AI analysis pipeline</li>
+            </ul>
+            <p><strong>You'll test:</strong></p>
+            <ul>
+                <li>Upload test files and verify analysis results</li>
+                <li>Check if external tools are working properly</li>
+                <li>Provide feedback on detection accuracy</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <h3>Phase 3: Frontend Development (1 week)</h3>
+            <p><strong>I'll build:</strong></p>
+            <ul>
+                <li>Complete React dashboard application</li>
+                <li>File upload interface</li>
+                <li>Analysis results visualization</li>
+                <li>Real-time monitoring system</li>
+                <li>Analysis history management</li>
+            </ul>
+            <p><strong>You'll evaluate:</strong></p>
+            <ul>
+                <li>User interface design and usability</li>
+                <li>Data visualization effectiveness</li>
+                <li>Overall user experience</li>
+            </ul>
+        </div>
+
+        <div class="phase">
+            <h3>Phase 4: Integration & Polish (3-4 days)</h3>
+            <p><strong>I'll finalize:</strong></p>
+            <ul>
+                <li>Frontend-backend integration</li>
+                <li>Performance optimization</li>
+                <li>Error handling and edge cases</li>
+                <li>Documentation and deployment guides</li>
+            </ul>
+            <p><strong>You'll conduct:</strong></p>
+            <ul>
+                <li>End-to-end testing with various file types</li>
+                <li>Performance testing with large files</li>
+                <li>Final user acceptance testing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>📊 Expected Capabilities</h2>
+        <div class="capability-card">
+            <h3>🔍 Detection Capabilities</h3>
+            <ul>
+                <li><strong>Image Steganography:</strong> LSB, DCT, F5, OutGuess detection</li>
+                <li><strong>Audio Steganography:</strong> LSB, echo hiding, phase coding</li>
+                <li><strong>Video Analysis:</strong> Frame-by-frame steganography detection</li>
+                <li><strong>File Embedding:</strong> Hidden files within images/audio</li>
+                <li><strong>Metadata Anomalies:</strong> Suspicious EXIF and metadata patterns</li>
+            </ul>
+        </div>
+
+        <div class="capability-card">
+            <h3>🧠 AI-Powered Analysis</h3>
+            <ul>
+                <li><strong>Machine Learning:</strong> Anomaly detection using Isolation Forest</li>
+                <li><strong>LLM Integration:</strong> Google Gemini for intelligent assessment</li>
+                <li><strong>Pattern Recognition:</strong> Custom algorithms for suspicious patterns</li>
+                <li><strong>Confidence Scoring:</strong> AI-calculated likelihood of steganography</li>
+            </ul>
+        </div>
+
+        <div class="capability-card">
+            <h3>📈 Visualization Features</h3>
+            <ul>
+                <li><strong>Entropy Heatmaps:</strong> Visual representation of data randomness</li>
+                <li><strong>Statistical Charts:</strong> Histogram analysis and distribution plots</li>
+                <li><strong>Real-time Monitoring:</strong> Live analysis progress tracking</li>
+                <li><strong>Interactive Dashboard:</strong> Comprehensive results overview</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🚨 Important Notes</h2>
+        <div class="alert alert-warning">
+            <strong>Windows Considerations:</strong> Some forensics tools may require additional setup on Windows. I'll provide specific Windows installation instructions and alternative approaches where needed.
+        </div>
+
+        <div class="alert alert-info">
+            <strong>API Costs:</strong> Google Gemini API has usage costs. For development, the free tier should be sufficient, but production use may require a paid plan.
+        </div>
+
+        <div class="alert alert-success">
+            <strong>Extensibility:</strong> The architecture I'll create allows for easy addition of new analysis algorithms and detection methods in the future.
+        </div>
+    </div>    <div class="container">
+        <h2>🎯 Current Status & Next Steps</h2>
+        
+        <div class="alert alert-success">
+            <strong>🎉 READY TO START DEVELOPMENT!</strong> Your environment setup is complete and verified.
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 25%;"></div>
+        </div>
+        <p><strong>Setup Progress: 25% Complete</strong></p>
+        
+        <h3>✅ Completed:</h3>
+        <ul>
+            <li>✅ Python 3.13.3 installed and verified</li>
+            <li>✅ Node.js v22.15.0 installed and verified</li>
+            <li>✅ Docker v28.0.4 with Docker Compose installed</li>
+            <li>✅ Project structure exists in e:\stegano</li>
+            <li>✅ Basic backend and frontend files are present</li>
+        </ul>
+        
+        <h3>🔄 Next Immediate Steps:</h3>
+        <ol>
+            <li><strong>Create Python virtual environment</strong> (I'll do this)</li>
+            <li><strong>Install all backend dependencies</strong> (I'll do this)</li>
+            <li><strong>Set up database with Docker</strong> (I'll do this)</li>
+            <li><strong>Install frontend dependencies</strong> (I'll do this)</li>
+            <li><strong>Test basic server startup</strong> (We'll do together)</li>
+        </ol>
+        
+        <p>Once you've completed the setup checklist above, we can begin Phase 1 immediately. I'll start by:</p>
+        
+        <ol>
+            <li>Setting up the complete project structure</li>
+            <li>Installing all Python dependencies</li>
+            <li>Creating the database schema</li>
+            <li>Building the initial FastAPI server</li>
+            <li>Setting up the React frontend foundation</li>
+        </ol>        <div class="command-box">
+            # ✅ VERIFIED WORKING COMMANDS:
+            python.exe --version        # Python 3.13.3
+            node --version             # v22.15.0  
+            docker --version           # 28.0.4
+            docker-compose --version   # v2.34.0-desktop.1
+            
+            # 🚀 READY TO RUN SETUP COMMANDS:
+            cd e:\stegano
+            python.exe -m venv venv
+            .\venv\Scripts\Activate.ps1
+            python.exe -m pip install -r backend\requirements.txt
+            cd frontend
+            npm install
+        </div>
+
+        <p><strong>🚀 READY TO START PHASE 1! All prerequisites are met. Say "go" and I'll begin the complete project setup! 💪</strong></p>
+    </div>
+
+    <footer style="text-align: center; padding: 30px; color: #666; border-top: 1px solid #ddd; margin-top: 50px;">
+        <p>Steganography Payload Scanner & Extractor — Collaboration Plan</p>
+        <p>Generated: June 4, 2025 | Partnership between AI Developer & Human Operator</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿# Core API framework
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+
+# Image and video processing
+pillow>=10.2.0
+opencv-python>=4.9.0
+imageio>=2.34.0
+imageio-ffmpeg>=0.4.9
+
+# Scientific computing and analysis
+scipy>=1.12.0
+numpy>=1.26.0
+matplotlib>=3.8.0
+scikit-learn>=1.4.0
+scikit-image>=0.22.0
+
+# Audio processing
+librosa==0.10.1
+pydub==0.25.1
+
+# File format analysis and forensics
+python-magic==0.4.27
+exifread==3.0.0
+
+# Security and cryptography
+cryptography>=41.0.7
+pycryptodome>=3.19.0
+
+# Database and configuration
+psycopg2-binary>=2.9.7
+sqlalchemy>=2.0.23
+alembic>=1.13.1
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
+
+# AI and ML
+openai>=1.12.0
+google-generativeai>=0.4.0
+# tensorflow>=2.16.0  # Skip for now - large install
+# torch>=2.2.0        # Skip for now - large install  
+# torchvision>=0.17.0 # Skip for now - large install
+
+# Web scraping and API integration
+requests==2.31.0
+aiohttp==3.9.1
+
+# Utilities
+click==8.1.7
+tqdm==4.66.1
+colorama==0.4.6
+rich==13.7.0
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1

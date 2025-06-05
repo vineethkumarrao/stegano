@@ -1,0 +1,39 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"args": [
+				"integration_test.py"
+			],
+			"command": "python",
+			"group": "test",
+			"isBackground": false,
+			"label": "Integration Test",
+			"type": "shell"
+		},
+		{
+			"label": "Start Backend Server",
+			"type": "shell",
+			"command": "python",
+			"args": ["main.py"],
+			"group": "build",
+			"isBackground": true,
+			"options": {
+				"cwd": "${workspaceFolder}/backend"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Frontend Server",
+			"type": "shell",
+			"command": "npm",
+			"args": ["start"],
+			"group": "build",
+			"isBackground": true,
+			"options": {
+				"cwd": "${workspaceFolder}/frontend"
+			},
+			"problemMatcher": []
+		}
+	]
+}
